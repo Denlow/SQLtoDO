@@ -19,13 +19,29 @@ namespace ToDoList
       Task.DeleteAll();
     }
     [Fact]
-    public void Test_DatabaseEmptyAtFirst()
+    public void Test_Equal_ReturnsTrueIfDescriptionsAreTheSame()
     {
       //Arrange, Act
-      int result = Task.GetAll().Count;
+      Task firstTask = new Task("Jump up and down");
+      Task secondTask = new Task("Do Something Different");
 
       //Assert
-      Assert.Equal(0, result);
+      Assert.Equal(fistTask, secondTask);
+
+      [Fact]
+  public void Test_Save_SavesToDatabase()
+  {
+    //Arrange
+    Task testTask = new Task("Mow the lawn");
+
+    //Act
+    testTask.Save();
+    List<Task> result = Task.GetAll();
+    List<Task> testList = new List<Task>{testTask};
+
+    //Assert
+    Assert.Equal(testList, result);
+  }
     }
   }
 }
